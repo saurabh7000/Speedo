@@ -45,10 +45,6 @@ const TripNavigate = () => {
   const handlePrevious = async () => {
     if (startIndex > 0) {
       setStartIndex((prev) => prev - 1);
-      let index = currTripIndex;
-      if (index > 0) {
-        await handleTripChange(tabs[index - 1]);
-      }
     }
   };
 
@@ -73,7 +69,13 @@ const TripNavigate = () => {
       <Box sx={navigateBoxStyle} onClick={handlePrevious}>
         <NavigateBeforeOutlinedIcon />
       </Box>
-      <Tabs value={value} onChange={handleChange} centered>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        variant="scrollable"
+        scrollButtons="auto"
+        aria-label="scrollable auto tabs example"
+      >
         {tabs.slice(startIndex, startIndex + 10).map((label, index) => (
           <Tab
             key={index + startIndex}
